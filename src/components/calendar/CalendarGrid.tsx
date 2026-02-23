@@ -84,12 +84,17 @@ export function CalendarGrid({ role }: { role: string }) {
                 <div style={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
                     <h2 style={{ fontSize: '1.5rem', fontWeight: 600 }}>{year}년 {month + 1}월</h2>
                     <div style={{ display: 'flex', gap: '0.25rem' }}>
-                        <Button variant="ghost" size="sm" onClick={handlePrevMonth}>&lt;</Button>
-                        <Button variant="ghost" size="sm" onClick={handleNextMonth}>&gt;</Button>
+                        <Button variant="ghost" size="sm" onClick={handlePrevMonth} style={{ fontSize: '1.2rem', padding: '0.5rem 0.75rem' }}>&lt;</Button>
+                        <Button variant="ghost" size="sm" onClick={handleNextMonth} style={{ fontSize: '1.2rem', padding: '0.5rem 0.75rem' }}>&gt;</Button>
                     </div>
                 </div>
                 <div className="responsive-calendar-actions">
-                    <Button variant="secondary" onClick={handleToday} style={{ marginRight: '0.5rem' }}>Today</Button>
+                    <Button variant="secondary" onClick={handleToday} style={{
+                        marginRight: '0.5rem',
+                        background: 'rgba(255, 255, 255, 0.1)',
+                        color: 'var(--text-primary)',
+                        border: '1px solid var(--border-subtle)'
+                    }}>Today</Button>
                     <Button variant="primary" onClick={() => { setSelectedDate(undefined); setIsModalOpen(true); }}>+ Propose Movie</Button>
                 </div>
             </div>
@@ -100,7 +105,7 @@ export function CalendarGrid({ role }: { role: string }) {
                 <div style={{ overflowX: 'auto', paddingBottom: '0.5rem' }}>
                     <div className="calendar-grid" style={{
                         display: 'grid',
-                        gridTemplateColumns: 'repeat(7, minmax(100px, 1fr))',
+                        gridTemplateColumns: 'repeat(7, 1fr)',
                         gap: '1px',
                         background: 'var(--border-subtle)',
                         borderRadius: '8px',
