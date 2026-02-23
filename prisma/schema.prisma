@@ -1,0 +1,70 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider  = "postgresql"
+  url       = env("DATABASE_URL")
+  directUrl = env("DIRECT_URL")
+}
+
+model User {
+  id        String     @id @default(cuid())
+  name      String
+  email     String     @unique
+  role      String     @default("MEMBER") // "MEMBER", "ADMIN"
+  proposals Proposal[]
+  votes     Vote[]
+  reviews   Review[]
+  createdAt DateTime   @default(now())
+}
+
+model Movie {
+  id          String     @id @default(cuid())
+  title       String
+  posterUrl   String?
+  synopsis    String?
+  proposals   Proposal[]
+  reviews     Review[]
+  createdAt   DateTime   @default(now())
+}
+
+model Proposal {
+  id          String   @id @default(cuid())
+  movieId     String
+  movie       Movie    @relation(fields: [movieId], references: [id])
+  userId      String
+  user        User     @relation(fields: [userId], references: [id])
+  targetDate  DateTime // The proposed date for the movie
+  status      String   @default("VOTING") // "VOTING", "PRELIMINARY", "SCHEDULED"
+  votes       Vote[]
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+model Vote {
+  id         String   @id @default(cuid())
+  proposalId String
+  proposal   Proposal @relation(fields: [proposalId], references: [id])
+  userId     String
+  user       User     @relation(fields: [userId], references: [id])
+  createdAt  DateTime @default(now())
+
+  @@unique([proposalId, userId]) // User can vote only once per proposal
+}
+
+model Review {
+  id        String   @id @default(cuid())
+  movieId   String
+  movie     Movie    @relation(fields: [movieId], references: [id])
+  userId    String
+  user      User     @relation(fields: [userId], references: [id])
+  rating    Int      // 1-5 stars
+  comment   String?
+  createdAt DateTime @default(now())
+
+  @@unique([movieId, userId]) // User can review a movie only once
+}
