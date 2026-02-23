@@ -82,7 +82,7 @@ export function CalendarGrid({ role }: { role: string }) {
         <div className="glass-panel" style={{ padding: '2rem', marginBottom: '2rem' }}>
             <div className="responsive-title-bar" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '1.5rem' }}>
                 <div style={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
-                    <h2 style={{ fontSize: '1.5rem', fontWeight: 600 }}>{monthNames[month]} {year}</h2>
+                    <h2 style={{ fontSize: '1.5rem', fontWeight: 600 }}>{year}년 {month + 1}월</h2>
                     <div style={{ display: 'flex', gap: '0.25rem' }}>
                         <Button variant="ghost" size="sm" onClick={handlePrevMonth}>&lt;</Button>
                         <Button variant="ghost" size="sm" onClick={handleNextMonth}>&gt;</Button>
@@ -106,11 +106,22 @@ export function CalendarGrid({ role }: { role: string }) {
                         borderRadius: '8px',
                         overflow: 'hidden'
                     }}>
-                        {['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'].map(day => (
-                            <div key={day} className="calendar-day-header" style={{ background: 'var(--bg-surface)', padding: '0.75rem', textAlign: 'center', fontWeight: 600, color: 'var(--text-secondary)' }}>
-                                {day}
-                            </div>
-                        ))}
+                        {['일', '월', '화', '수', '목', '금', '토'].map((day, idx) => {
+                            let color = 'var(--text-secondary)';
+                            if (idx === 0) color = '#ef4444'; // Sun (Red)
+                            if (idx === 6) color = '#3b82f6'; // Sat (Blue)
+                            return (
+                                <div key={day} className="calendar-day-header" style={{
+                                    background: 'var(--bg-surface)',
+                                    padding: '0.75rem',
+                                    textAlign: 'center',
+                                    fontWeight: 600,
+                                    color: color
+                                }}>
+                                    {day}
+                                </div>
+                            );
+                        })}
 
                         {days.map((dayNumber, index) => {
                             const dateStr = dayNumber ? new Date(year, month, dayNumber).toISOString().split('T')[0] : null;

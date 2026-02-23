@@ -15,8 +15,8 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Movie Club",
-  description: "Propose, vote, and evaluate movies",
+  title: "Film Archive Club",
+  description: "우리들의 영화 저장소",
 };
 
 export default async function RootLayout({
@@ -33,8 +33,8 @@ export default async function RootLayout({
         <div className="container" style={{ paddingTop: '2rem', paddingBottom: '2rem' }}>
           <header className="responsive-header" style={{ marginBottom: '2rem', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
             <div>
-              <h1 className="text-gradient" style={{ fontSize: '2rem', fontWeight: 700 }}>Movie Club</h1>
-              <p style={{ color: 'var(--text-muted)' }}>Propose, Vote, and Review</p>
+              <h1 className="text-gradient" style={{ fontSize: '2rem', fontWeight: 700 }}>Film Archive Club</h1>
+              <p style={{ color: 'var(--text-muted)' }}>우리들의 영화 저장소</p>
             </div>
             <nav className="responsive-nav" style={{ display: 'flex', gap: '0.5rem', alignItems: 'center' }}>
               <a href="#" className="glass-panel" style={{ padding: '0.5rem 1rem' }}>Calendar</a>
