@@ -13,8 +13,16 @@ interface ProposeMovieModalProps {
 }
 
 export function ProposeMovieModal({ isOpen, onClose, onSuccess, defaultDate }: ProposeMovieModalProps) {
+    const getLocalDateString = () => {
+        const d = new Date();
+        const y = d.getFullYear();
+        const m = String(d.getMonth() + 1).padStart(2, '0');
+        const day = String(d.getDate()).padStart(2, '0');
+        return `${y}-${m}-${day}`;
+    };
+
     const [title, setTitle] = useState('');
-    const [targetDate, setTargetDate] = useState(defaultDate || new Date().toISOString().split('T')[0]);
+    const [targetDate, setTargetDate] = useState(defaultDate || getLocalDateString());
     const [isSubmitting, setIsSubmitting] = useState(false);
 
     // Update form if defaultDate changes while modal is open/opening

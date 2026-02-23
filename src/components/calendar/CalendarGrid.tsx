@@ -129,8 +129,16 @@ export function CalendarGrid({ role }: { role: string }) {
                         })}
 
                         {days.map((dayNumber, index) => {
-                            const dateStr = dayNumber ? new Date(year, month, dayNumber).toISOString().split('T')[0] : null;
-                            const dayProposals = dateStr ? proposals.filter(p => new Date(p.targetDate).toISOString().split('T')[0] === dateStr) : [];
+                            const date = dayNumber ? new Date(year, month, dayNumber) : null;
+                            const formatDate = (d: Date) => {
+                                const y = d.getFullYear();
+                                const m = String(d.getMonth() + 1).padStart(2, '0');
+                                const day = String(d.getDate()).padStart(2, '0');
+                                return `${y}-${m}-${day}`;
+                            };
+
+                            const dateStr = date ? formatDate(date) : null;
+                            const dayProposals = dateStr ? proposals.filter(p => formatDate(new Date(p.targetDate)) === dateStr) : [];
                             const dayName = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'][index % 7];
 
                             return (
