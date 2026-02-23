@@ -98,17 +98,16 @@ export function CalendarGrid({ role }: { role: string }) {
 
             {!loading && (
                 <div style={{ overflowX: 'auto', paddingBottom: '0.5rem' }}>
-                    <div style={{
+                    <div className="calendar-grid" style={{
                         display: 'grid',
                         gridTemplateColumns: 'repeat(7, minmax(100px, 1fr))',
                         gap: '1px',
                         background: 'var(--border-subtle)',
                         borderRadius: '8px',
-                        overflow: 'hidden',
-                        minWidth: '700px'
+                        overflow: 'hidden'
                     }}>
                         {['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'].map(day => (
-                            <div key={day} style={{ background: 'var(--bg-surface)', padding: '0.75rem', textAlign: 'center', fontWeight: 600, color: 'var(--text-secondary)' }}>
+                            <div key={day} className="calendar-day-header" style={{ background: 'var(--bg-surface)', padding: '0.75rem', textAlign: 'center', fontWeight: 600, color: 'var(--text-secondary)' }}>
                                 {day}
                             </div>
                         ))}
@@ -116,11 +115,13 @@ export function CalendarGrid({ role }: { role: string }) {
                         {days.map((dayNumber, index) => {
                             const dateStr = dayNumber ? new Date(year, month, dayNumber).toISOString().split('T')[0] : null;
                             const dayProposals = dateStr ? proposals.filter(p => new Date(p.targetDate).toISOString().split('T')[0] === dateStr) : [];
+                            const dayName = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'][index % 7];
 
                             return (
                                 <CalendarCell
                                     key={index}
                                     dayNumber={dayNumber}
+                                    dayName={dayName}
                                     proposals={dayProposals}
                                     isToday={dayNumber === new Date().getDate() && month === new Date().getMonth() && year === new Date().getFullYear()}
                                     role={role}
