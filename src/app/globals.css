@@ -117,81 +117,110 @@ ol {
     align-items: center !important;
     text-align: center;
     gap: 1.5rem;
+    padding: 1.5rem 1rem !important;
   }
 
   .responsive-nav {
     flex-direction: column;
     width: 100%;
-    gap: 0.75rem !important;
+    gap: 1rem !important;
   }
 
   .responsive-nav form {
-    width: 100%;
-  }
-
-  .responsive-nav input {
-    flex: 1;
-  }
-
-  .responsive-nav .glass-panel {
-    width: 100%;
-    justify-content: center;
-  }
-
-  .responsive-title-bar {
-    flex-direction: column !important;
-    gap: 1rem;
-    align-items: center !important;
-  }
-
-  .responsive-calendar-actions {
     width: 100%;
     display: flex;
     gap: 0.5rem;
   }
 
-  .responsive-calendar-actions button {
+  .responsive-nav input {
     flex: 1;
-    padding: 0.75rem 0.5rem !important;
-    font-size: 0.85rem !important;
+    font-size: 1rem !important;
+  }
+
+  .responsive-nav .glass-panel {
+    width: 100%;
+    justify-content: center;
+    padding: 0.75rem !important;
+  }
+
+  .responsive-title-bar {
+    flex-direction: column !important;
+    gap: 1.25rem;
+    align-items: center !important;
+    margin-bottom: 2rem !important;
+  }
+
+  .responsive-calendar-actions {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+
+  .responsive-calendar-actions button {
+    width: 100%;
+    padding: 0.875rem !important;
+    font-size: 1rem !important;
   }
 
   .calendar-grid {
-    display: grid !important;
-    flex-direction: unset !important;
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 0.5rem !important;
+    background: transparent !important;
   }
 
   .calendar-day-header {
-    display: block !important;
-    padding: 0.5rem 0.25rem !important;
-    font-size: 0.7rem !important;
-  }
-
-  .calendar-cell {
-    min-height: 80px !important;
-    padding: 0.25rem !important;
-  }
-
-  .calendar-cell.empty-cell {
-    display: block !important;
-  }
-
-  .mobile-day-header {
-    justify-content: center;
-    margin-bottom: 0.25rem !important;
-  }
-
-  .mobile-day-name {
     display: none !important;
   }
 
+  .calendar-cell {
+    flex-direction: row !important;
+    align-items: center !important;
+    min-height: auto !important;
+    padding: 1rem !important;
+    border: 1px solid var(--border-subtle) !important;
+    border-radius: 12px !important;
+    gap: 1rem !important;
+    background: var(--bg-surface) !important;
+  }
+
+  .calendar-cell.empty-cell {
+    display: none !important;
+  }
+
+  .mobile-day-header {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    justify-content: center !important;
+    width: 50px !important;
+    flex-shrink: 0 !important;
+    margin-bottom: 0 !important;
+    border-right: 1px solid var(--border-subtle);
+    padding-right: 0.75rem;
+  }
+
+  .mobile-day-name {
+    display: block !important;
+    font-size: 0.7rem;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    font-weight: 700;
+  }
+
   .proposals-container {
-    gap: 0.25rem !important;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem !important;
   }
 
   .proposal-badge {
-    font-size: 0.6rem !important;
-    padding: 0.15rem 0.25rem !important;
+    font-size: 0.85rem !important;
+    padding: 0.5rem 0.75rem !important;
+    white-space: normal !important;
+    line-height: 1.4 !important;
   }
 }
 

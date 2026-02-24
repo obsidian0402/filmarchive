@@ -18,22 +18,7 @@ export function CalendarGrid({ role }: { role: string }) {
     const [isVoteModalOpen, setIsVoteModalOpen] = useState(false);
     const [selectedProposal, setSelectedProposal] = useState<any>(null);
 
-    useEffect(() => {
-        async function loadProposals() {
-            setLoading(true);
-            try {
-                const data = await getProposalsForMonth(currentDate.getFullYear(), currentDate.getMonth());
-                setProposals(data);
-            } catch (error) {
-                console.error("Failed to load proposals", error);
-            } finally {
-                setLoading(false);
-            }
-        }
-        loadProposals();
-    }, [currentDate]);
-
-    async function loadProposals() {
+    const loadProposals = async () => {
         setLoading(true);
         try {
             const data = await getProposalsForMonth(currentDate.getFullYear(), currentDate.getMonth());
@@ -43,7 +28,12 @@ export function CalendarGrid({ role }: { role: string }) {
         } finally {
             setLoading(false);
         }
-    }
+    };
+
+    useEffect(() => {
+        loadProposals();
+    }, [currentDate]);
+
 
     const getDaysInMonth = (year: number, month: number) => {
         return new Date(year, month + 1, 0).getDate();
