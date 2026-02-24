@@ -40,6 +40,17 @@ export function CalendarCell({ dayNumber, dayName, proposals, isToday, role, onC
             onMouseOut={(e) => e.currentTarget.style.background = 'var(--bg-base)'}
             onClick={onClick}
         >
+            <div className="mobile-day-header">
+                <span className="mobile-day-name">{dayName}</span>
+                <span style={{
+                    color: isToday ? 'var(--accent-primary)' : (dayName === 'Sun' ? '#ef4444' : (dayName === 'Sat' ? '#3b82f6' : 'var(--text-muted)')),
+                    fontWeight: 700,
+                    fontSize: '1.25rem',
+                    lineHeight: 1
+                }}>
+                    {dayNumber}
+                </span>
+            </div>
 
             {/* Render Proposals */}
             <div className="proposals-container">
